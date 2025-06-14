@@ -109,6 +109,7 @@ services:
       - MODEL_ENABLED=*
       - ACCOUNTS_URL=http://localhost:3000
       - ACCOUNT_PORT=3000
+      - DISABLE_SIGNUP=${DISABLE_SIGNUP}
     restart: unless-stopped
     networks:
       - nginx
@@ -150,6 +151,7 @@ services:
       - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE:-en}
       - LAST_NAME_FIRST=${LAST_NAME_FIRST:-true}
       - DESKTOP_UPDATES_CHANNEL=selfhost
+      - DISABLE_SIGNUP=${DISABLE_SIGNUP}
     restart: unless-stopped
     networks:
       - nginx
