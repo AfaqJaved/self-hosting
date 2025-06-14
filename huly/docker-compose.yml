@@ -27,6 +27,8 @@ services:
     volumes:
       - files:/data
     restart: unless-stopped
+    networks:
+      - nginx
 
   elastic:
     image: "elasticsearch:7.14.2"
@@ -59,6 +61,8 @@ services:
         limits:
           memory: 500M
     restart: unless-stopped
+    networks:
+      - nginx
 
   transactor:
     image: hardcoreeng/transactor:${HULY_VERSION}
@@ -88,6 +92,8 @@ services:
       - STATS_URL=http://stats:4900
       - STORAGE_CONFIG=minio|minio?accessKey=minioadmin&secretKey=minioadmin
     restart: unless-stopped
+    networks:
+      - nginx
 
   account:
     image: hardcoreeng/account:${HULY_VERSION}
