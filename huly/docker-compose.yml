@@ -5,7 +5,7 @@ services:
     #  - "${NGINX_SERVICE_PORT}:80"
     volumes:
       # - ./huly.nginx:/etc/nginx/conf.d/default.conf
-      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+      - ./nginx/sites-enabled:/etc/nginx/conf.d
     restart: unless-stopped
     networks:
       - internal-services
