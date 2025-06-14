@@ -18,6 +18,8 @@ services:
     volumes:
       - db:/data/db
     restart: unless-stopped
+    networks:
+      - nginx
 
   minio:
     image: "minio/minio"
@@ -45,6 +47,8 @@ services:
       retries: 10
       test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
     restart: unless-stopped
+    networks:
+      - nginx
 
   rekoni:
     image: hardcoreeng/rekoni-service:${HULY_VERSION}
@@ -71,6 +75,8 @@ services:
       - STATS_URL=http://stats:4900
       - LAST_NAME_FIRST=${LAST_NAME_FIRST:-true}
     restart: unless-stopped
+    networks:
+      - nginx
 
   collaborator:
     image: hardcoreeng/collaborator:${HULY_VERSION}
@@ -98,6 +104,8 @@ services:
       - ACCOUNTS_URL=http://localhost:3000
       - ACCOUNT_PORT=3000
     restart: unless-stopped
+    networks:
+      - nginx
 
   workspace:
     image: hardcoreeng/workspace:${HULY_VERSION}
@@ -111,6 +119,8 @@ services:
       - ACCOUNTS_URL=http://account:3000
       - STATS_URL=http://stats:4900
     restart: unless-stopped
+    networks:
+      - nginx
 
   front:
     image: hardcoreeng/front:${HULY_VERSION}
@@ -135,6 +145,8 @@ services:
       - LAST_NAME_FIRST=${LAST_NAME_FIRST:-true}
       - DESKTOP_UPDATES_CHANNEL=selfhost
     restart: unless-stopped
+    networks:
+      - nginx
 
   fulltext:
     image: hardcoreeng/fulltext:${HULY_VERSION}
@@ -148,6 +160,8 @@ services:
       - ACCOUNTS_URL=http://account:3000
       - STATS_URL=http://stats:4900
     restart: unless-stopped
+    networks:
+      - nginx
 
   stats:
     image: hardcoreeng/stats:${HULY_VERSION}
@@ -155,6 +169,8 @@ services:
       - PORT=4900
       - SERVER_SECRET=${SECRET}
     restart: unless-stopped
+    networks:
+      - nginx
 
 volumes:
   db:
