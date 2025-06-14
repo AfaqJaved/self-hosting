@@ -42,14 +42,18 @@ services:
     networks:
       - internal-services
 
-  # minio:
-  #   image: "minio/minio"
-  #   command: server /data --address ":9000" --console-address ":9001"
-  #   volumes:
-  #     - files:/data
-  #   restart: unless-stopped
-  #   networks:
-  #     - internal-services
+  minio:
+    image: "minio/minio"
+    command: server /data --address ":9000" --console-address ":9001"
+    command: server /data --address ":9000" --console-address ":9001"
+    environment:
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+    volumes:
+      - files:/data
+    restart: unless-stopped
+    networks:
+      - internal-services
 
   rekoni:
     image: hardcoreeng/rekoni-service:${HULY_VERSION}
@@ -63,7 +67,6 @@ services:
     networks:
       - internal-services
       - nginx-public
-      - shared_minio
 
   transactor:
     image: hardcoreeng/transactor:${HULY_VERSION}
@@ -86,7 +89,6 @@ services:
     networks:
       - internal-services
       - nginx-public
-      - shared_minio
 
 
   collaborator:
@@ -101,7 +103,6 @@ services:
     networks:
       - internal-services
       - nginx-public
-      - shared_minio
 
   account:
     image: hardcoreeng/account:${HULY_VERSION}
@@ -119,7 +120,6 @@ services:
     networks:
       - internal-services
       - nginx-public
-      - shared_minio
 
   workspace:
     image: hardcoreeng/workspace:${HULY_VERSION}
@@ -135,7 +135,6 @@ services:
     networks:
       - internal-services
       - nginx-public
-      - shared_minio
 
   front:
     image: hardcoreeng/front:${HULY_VERSION}
@@ -159,7 +158,6 @@ services:
     networks:
       - internal-services
       - nginx-public
-      - shared_minio
 
 networks:
   nginx-public:
@@ -168,9 +166,8 @@ networks:
     name: internal-services
   nginx:
     external: true
-  shared_minio:
-    external: true
 
 volumes:
   db:
   elastic:
+  files:
