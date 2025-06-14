@@ -1,6 +1,8 @@
 services:
   huly-nginx:
-    image: "nginx:1.21.3"
+    build:
+      dockerfile: Dockerfile.nginx
+    # image: "nginx:1.21.3"
     #ports:
     #  - "${NGINX_SERVICE_PORT}:80"
     volumes:
