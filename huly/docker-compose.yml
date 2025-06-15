@@ -78,6 +78,7 @@ services:
       - FULLTEXT_URL=http://fulltext:4700
       - STATS_URL=http://stats:4900
       - LAST_NAME_FIRST=${LAST_NAME_FIRST:-true}
+      - MAIL_URL=http://mail:8097
     restart: unless-stopped
     networks:
       - nginx
@@ -110,6 +111,7 @@ services:
       - ACCOUNTS_URL=http://localhost:3000
       - ACCOUNT_PORT=3000
       - DISABLE_SIGNUP=${DISABLE_SIGNUP}
+      - MAIL_URL=http://mail:8097
     restart: unless-stopped
     networks:
       - nginx
@@ -179,6 +181,20 @@ services:
     restart: unless-stopped
     networks:
       - nginx
+
+  mail:
+  image: hardcoreeng/mail:v0.6.501
+  container_name: mail
+  #ports:
+  #  - 8097:8097
+  environment:
+    - PORT=8097
+    - SOURCE=${SMTP_EMAIL_FROM}
+    - SMTP_HOST=${SMTP_HOST}
+    - SMTP_PORT=${SMTP_PORT}
+    - SMTP_USERNAME=${SMTP_USERNAME}
+    - SMTP_PASSWORD=${SMTP_PASSWORD}
+  restart: unless-stopped
 
 volumes:
   db:
