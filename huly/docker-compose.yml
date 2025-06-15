@@ -183,19 +183,19 @@ services:
       - nginx
 
   mail:
-  image: hardcoreeng/mail:v0.6.501
-  container_name: mail
-  #ports:
-  #  - 8097:8097
-  environment:
-    - PORT=8097
-    - SOURCE=${SMTP_EMAIL_FROM}
-    - SMTP_HOST=${SMTP_HOST}
-    - SMTP_PORT=${SMTP_PORT}
-    - SMTP_USERNAME=${SMTP_USERNAME}
-    - SMTP_PASSWORD=${SMTP_PASSWORD}
-  restart: unless-stopped
-  networks:
+    image: hardcoreeng/mail:v0.6.501
+    container_name: mail
+    #ports:
+    #  - 8097:8097
+    environment:
+      - PORT=8097
+      - SOURCE=${SMTP_EMAIL_FROM}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+    restart: unless-stopped
+    networks:
       - nginx
 
 volumes:
