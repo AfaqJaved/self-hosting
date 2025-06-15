@@ -200,7 +200,7 @@ services:
     networks:
       - nginx
 
-    love:
+  love:
     image: hardcoreeng/love:v0.6.501
     container_name: love
     #ports:
@@ -217,6 +217,8 @@ services:
       - LIVEKIT_API_KEY=${LIVEKIT_API_KEY}
       - LIVEKIT_API_SECRET=${LIVEKIT_API_SECRET}
     restart: unless-stopped
+    networks:
+      - nginx
 
 volumes:
   db:
