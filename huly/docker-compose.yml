@@ -203,8 +203,8 @@ services:
     love:
     image: hardcoreeng/love:v0.6.501
     container_name: love
-    ports:
-      - 8096:8096
+    #ports:
+    #  - 8096:8096
     environment:
       - STORAGE_CONFIG=minio|minio?accessKey=minioadmin&secretKey=minioadmin
       - SECRET=secret
