@@ -154,6 +154,8 @@ services:
       - LAST_NAME_FIRST=${LAST_NAME_FIRST:-true}
       - DESKTOP_UPDATES_CHANNEL=selfhost
       - DISABLE_SIGNUP=${DISABLE_SIGNUP}
+      - LIVEKIT_WS=${LIVEKIT_HOST}
+      - LOVE_ENDPOINT=http://love:8096
     restart: unless-stopped
     networks:
       - nginx
@@ -197,6 +199,24 @@ services:
     restart: unless-stopped
     networks:
       - nginx
+
+    love:
+    image: hardcoreeng/love:v0.6.501
+    container_name: love
+    ports:
+      - 8096:8096
+    environment:
+      - STORAGE_CONFIG=minio|minio?accessKey=minioadmin&secretKey=minioadmin
+      - SECRET=secret
+      - ACCOUNTS_URL=http://account:3000
+      - DB_URL=mongodb://mongodb:27017
+      - MONGO_URL=mongodb://mongodb:27017
+      - STORAGE_PROVIDER_NAME=minio
+      - PORT=8096
+      - LIVEKIT_HOST=${LIVEKIT_HOST}
+      - LIVEKIT_API_KEY=${LIVEKIT_API_KEY}
+      - LIVEKIT_API_SECRET=${LIVEKIT_API_SECRET}
+    restart: unless-stopped
 
 volumes:
   db:
