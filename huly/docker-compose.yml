@@ -155,7 +155,7 @@ services:
       - DESKTOP_UPDATES_CHANNEL=selfhost
       - DISABLE_SIGNUP=${DISABLE_SIGNUP}
       - LIVEKIT_WS=${LIVEKIT_HOST}
-      - LOVE_ENDPOINT=http://love:8096
+      - LOVE_ENDPOINT=http${SECURE:+s}://love:8096
     restart: unless-stopped
     networks:
       - nginx
