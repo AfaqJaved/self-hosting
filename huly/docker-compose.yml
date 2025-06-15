@@ -195,6 +195,8 @@ services:
     - SMTP_USERNAME=${SMTP_USERNAME}
     - SMTP_PASSWORD=${SMTP_PASSWORD}
   restart: unless-stopped
+  networks:
+      - nginx
 
 volumes:
   db:
