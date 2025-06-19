@@ -62,8 +62,7 @@ services:
     depends_on:
       - api
       - worker
-    networks:
-      - nginx
+
 
   space:
     image: artifacts.plane.so/makeplane/plane-space:${APP_RELEASE:-v0.26.1}
@@ -230,6 +229,8 @@ services:
       - web
       - api
       - space
+    networks:
+      - nginx
 
 volumes:
   pgdata:
