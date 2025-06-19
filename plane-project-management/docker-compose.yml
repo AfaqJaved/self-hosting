@@ -90,6 +90,8 @@ services:
     depends_on:
       - api
       - web
+    networks:
+      - nginx
 
 
   live:
@@ -104,6 +106,8 @@ services:
     depends_on:
       - api
       - web
+    networks:
+      - nginx
 
   api:
     image: artifacts.plane.so/makeplane/plane-backend:${APP_RELEASE:-v0.26.1}
