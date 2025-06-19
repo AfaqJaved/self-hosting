@@ -144,6 +144,9 @@ services:
       - plane-redis
       - plane-mq
 
+    networks:
+      - nginx
+
   beat-worker:
     image: artifacts.plane.so/makeplane/plane-backend:${APP_RELEASE:-v0.26.1}
     command: ./bin/docker-entrypoint-beat.sh
@@ -160,6 +163,8 @@ services:
       - plane-db
       - plane-redis
       - plane-mq
+    networks:
+      - nginx
 
   migrator:
     image: artifacts.plane.so/makeplane/plane-backend:${APP_RELEASE:-v0.26.1}
@@ -175,6 +180,8 @@ services:
     depends_on:
       - plane-db
       - plane-redis
+    networks:
+      - nginx
 
   # Comment this if you already have a database running
   plane-db:
@@ -188,6 +195,8 @@ services:
       <<: *db-env
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - nginx
 
   plane-redis:
     image: valkey/valkey:7.2.5-alpine
@@ -197,6 +206,8 @@ services:
         condition: on-failure
     volumes:
       - redisdata:/data
+    networks:
+      - nginx
 
   plane-mq:
     image: rabbitmq:3.13.6-management-alpine
@@ -208,6 +219,8 @@ services:
       <<: *mq-env
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - nginx
 
   # Comment this if you using any external s3 compatible storage
   plane-minio:
@@ -221,6 +234,8 @@ services:
       <<: *minio-env
     volumes:
       - uploads:/export
+    networks:
+      - nginx
 
   # Comment this if you already have a reverse proxy running
   proxy:
