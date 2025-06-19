@@ -212,7 +212,7 @@ services:
       - uploads:/export
 
   # Comment this if you already have a reverse proxy running
-  plane-proxy:
+  proxy:
     image: artifacts.plane.so/makeplane/plane-proxy:${APP_RELEASE:-v0.26.1}
     ports:
       - target: 80
