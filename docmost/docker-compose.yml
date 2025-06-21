@@ -1,0 +1,69 @@
+version: "3"
+
+services:
+  docmost:
+    image: docmost/docmost:${VERSION}
+    environment:
+      APP_URL: ${HOSTED_DOMAIN}
+      APP_SECRET: ${DOCMOST_SECRET}
+      DATABASE_URL: ${DATABASE_URL}
+      REDIS_URL: ${REDIS_URL}
+      STORAGE_DRIVER: ${STORAGE_DRIVER}
+      AWS_S3_ACCESS_KEY_ID: ${AWS_S3_ACCESS_KEY_ID}
+      AWS_S3_SECRET_ACCESS_KEY: ${AWS_S3_SECRET_ACCESS_KEY}
+      AWS_S3_REGION: ${AWS_S3_REGION}
+      AWS_S3_ENDPOINT: ${AWS_S3_ENDPOINT}
+      AWS_S3_FORCE_PATH_STYLE: ${AWS_S3_FORCE_PATH_STYLE}
+      MAIL_DRIVER: ${MAIL_DRIVER}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_SECURE: ${SMTP_SECURE}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME}
+    #ports:
+    #  - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      - docmost:/app/data/storage
+    networks:
+      - shared_postgres
+      - shared_redis
+      - shared_minio
+      - nginx
+
+  # postgres-docmost:
+  #   image: postgres:15
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: postgres
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+
+  # minio-docmost:
+  #   image: minio/minio
+  #   command: server /data --console-address ":9001"
+  #   environment:
+  #     MINIO_ACCESS_KEY: AKIA7FJB8R93XTRN56PL
+  #     MINIO_SECRET_KEY: d87J!Yh63B*kP&u9r5%Z+3LpXnR@vGmw
+  #   ports:
+  #     - "9000:9000"  # API
+  #     - "9001:9001"  # Web UI
+  #   volumes:
+  #     - miniodata:/data
+
+volumes:
+  docmost:
+
+networks:
+  shared_minio:
+    external: true
+  shared_postgres:
+    external: true
+  shared_redis:
+    external: true
+  nginx:
+    external: true
