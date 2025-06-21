@@ -25,8 +25,8 @@ services:
     #ports:
     #  - "3000:3000"
     restart: unless-stopped
-    volumes:
-      - docmost:/app/data/storage
+    #volumes:
+    #  - docmost:/app/data/storage
     networks:
       - shared_postgres
       - shared_redis
@@ -55,8 +55,8 @@ services:
   #   volumes:
   #     - miniodata:/data
 
-volumes:
-  docmost:
+#volumes:
+#  docmost:
 
 networks:
   shared_minio:
