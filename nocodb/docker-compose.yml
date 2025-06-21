@@ -55,3 +55,9 @@ volumes:
 networks:
   nginx:
     external: true
+  shared_postgres:
+    external: true
+  shared_redis:
+    external: true
+  shared_minio:
+    external: true
