@@ -1,6 +1,6 @@
 services:
   teable:
-    image: ghcr.io/teableio/teable:latest
+    image: ghcr.io/teableio/teable-ee:latest
     restart: always
     #ports: no need since using npm (nginx proxy manager)
     #  - '3000:3000'
@@ -11,6 +11,7 @@ services:
     environment:
       - NEXT_ENV_IMAGES_ALL_REMOTE=true
       - PORT=${PORT}
+      - LOG_LEVEL=debug
       - SECRET_KEY=${SECRET_KEY}
       - PUBLIC_ORIGIN=${PUBLIC_ORIGIN}
       - PRISMA_DATABASE_URL=${PRISMA_DATABASE_URL}
