@@ -11,7 +11,7 @@ services:
     environment:
       - NEXT_ENV_IMAGES_ALL_REMOTE=true
       - PORT=${PORT}
-      - LOG_LEVEL=debug
+      - LOG_LEVEL=error
       - SECRET_KEY=${SECRET_KEY}
       - PUBLIC_ORIGIN=${PUBLIC_ORIGIN}
       - PRISMA_DATABASE_URL=${PRISMA_DATABASE_URL}
