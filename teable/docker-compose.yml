@@ -1,6 +1,6 @@
 services:
   teable:
-    image: teableio/teable-ee:latest
+    image: teableio/teable:latest
     restart: always
     #ports: no need since using npm (nginx proxy manager)
     #  - '3000:3000'
