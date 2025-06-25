@@ -505,6 +505,6 @@ services:
 
 # Custom network so all services can communicate using a FQDN
 networks:
-    meet.jitsi:
-    nginx:
-      external: true
+  meet.jitsi: {}
+  nginx:
+    external: true
