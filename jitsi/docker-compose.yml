@@ -185,6 +185,7 @@ services:
             - WHITEBOARD_COLLAB_SERVER_URL_BASE
         networks:
             meet.jitsi:
+            - nginx
         depends_on:
             - jvb
 
@@ -505,3 +506,5 @@ services:
 # Custom network so all services can communicate using a FQDN
 networks:
     meet.jitsi:
+    nginx:
+      external: true
