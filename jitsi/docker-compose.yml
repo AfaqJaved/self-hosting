@@ -184,7 +184,7 @@ services:
             - WHITEBOARD_COLLAB_SERVER_PUBLIC_URL
             - WHITEBOARD_COLLAB_SERVER_URL_BASE
         networks:
-            meet.jitsi:
+            - meet.jitsi
             - nginx
         depends_on:
             - jvb
