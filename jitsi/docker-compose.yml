@@ -1,6 +1,6 @@
 services:
     # Frontend
-    web:
+    j-web:
         image: jitsi/web:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
         #ports:
