@@ -90,5 +90,5 @@ services:
       - STATS_ENABLED=${STATS_ENABLED}
       - STATS_SCR=${STATS_SCR}
       - STATS_ID=${STATS_ID}
-    ports:
-      - "3000:3000"
+    #ports: // exposing using https via nginx proxy manager
+    #  - "3000:3000"
