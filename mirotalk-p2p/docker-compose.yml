@@ -3,6 +3,8 @@ services:
     image: mirotalk/p2p:latest
     container_name: mirotalk
     hostname: mirotalk
+    networks:
+      - nginx
     environment:
       - NODE_ENV=${NODE_ENV}
       - PORT=${PORT}
@@ -92,3 +94,10 @@ services:
       - STATS_ID=${STATS_ID}
     #ports: // exposing using https via nginx proxy manager
     #  - "3000:3000"
+
+
+
+# This is the npm network
+networks:
+  nginx:
+    external: true
