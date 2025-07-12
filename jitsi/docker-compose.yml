@@ -439,8 +439,8 @@ services:
     jvb:
         image: jitsi/jvb:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
-        #ports:
-        #    - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
+        ports:
+            - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
         #    - '127.0.0.1:${JVB_COLIBRI_PORT:-8080}:8080'
         volumes:
             - ${CONFIG}/jvb:/config:Z
