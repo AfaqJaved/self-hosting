@@ -82,9 +82,11 @@ volumes:
 # <--
 
 # --> (Optional) When using traefik...
-# networks:
-#   frontend:
-#     external: true
+networks:
+  shared_postgres:
+    external: true
+  nginx:
+    external: true
 # <--
 # --> (Optional) When using an internal database...
 #   backend:
