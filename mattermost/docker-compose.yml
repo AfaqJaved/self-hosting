@@ -38,7 +38,16 @@ services:
       - MM_SQLSETTINGS_DRIVERNAME=${MM_SQLSETTINGS_DRIVERNAME}
       - MM_SQLSETTINGS_DATASOURCE=${MM_SQLSETTINGS_DATASOURCE}
       - MM_SERVICESETTINGS_SITEURL=${MM_SERVICESETTINGS_SITEURL}
+    networks:
+      - nginx
+      - shared_postgres
 
+
+networks:
+  nginx:
+    external: true
+  shared_postgres:
+    external: true
 
 
 # If you use rolling image tags and feel lucky watchtower can automatically pull new images and
