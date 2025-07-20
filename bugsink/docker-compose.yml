@@ -21,8 +21,8 @@ services:
       mysql:
         condition: service_healthy
     restart: unless-stopped
-    ports:
-      - "8000:8000"
+    #ports:
+    #  - "8000:8000" # not need since using npm
     environment:
       SECRET_KEY: ${SECRET_KEY} #  django-insecure-RMLYThim9NybWgXiUGat32Aa0Qbgqscf4NPDQuZO2glcZPOiXn
       CREATE_SUPERUSER: ${CREATE_SUPERUSER} #  admin:admin
