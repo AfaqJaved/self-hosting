@@ -1,0 +1,40 @@
+services:
+  mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    command : "--binlog_expire_logs_seconds=3600"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # change_your_passwords_for_real_usage # TODO: Change this
+      MYSQL_DATABASE: ${MYSQL_DATABASE} # bugsink
+    volumes:
+      - my-datavolume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "exit | mysql -h localhost -P 3306 -u root -p$$MYSQL_ROOT_PASSWORD" ]  # 'exit |' closes the MySQL input prompt
+      interval: 1s
+      timeout: 20s
+      retries: 30
+
+  bugsink:
+    image: bugsink/bugsink
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY} #  django-insecure-RMLYThim9NybWgXiUGat32Aa0Qbgqscf4NPDQuZO2glcZPOiXn
+      CREATE_SUPERUSER: ${CREATE_SUPERUSER} #  admin:admin
+      PORT: ${PORT} #  8000
+      DATABASE_URL: ${DATABASE_URL} #  mysql://root:change_your_passwords_for_real_usage@mysql:3306/bugsink
+      BEHIND_HTTPS_PROXY: ${BEHIND_HTTPS_PROXY} #  "false"
+      BASE_URL: ${BASE_URL} #  "http://localhost:8000"
+    healthcheck:
+      test: ["CMD-SHELL", "python -c 'import requests; requests.get(\"${BASE_URL}/\").raise_for_status()'"]
+      interval: 5s
+      timeout: 20s
+      retries: 10
+
+volumes:
+  my-datavolume:
