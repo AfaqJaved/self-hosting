@@ -14,6 +14,8 @@ services:
       interval: 1s
       timeout: 20s
       retries: 30
+    networks:
+      - backend
 
   bugsink:
     image: bugsink/bugsink
@@ -37,10 +39,12 @@ services:
       retries: 10
     networks:
       - nginx
+      - backend
 
 volumes:
   my-datavolume:
 
 networks:
+  backend:
   nginx:
     external: true
