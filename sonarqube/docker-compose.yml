@@ -39,3 +39,9 @@ volumes:
   sonarqube_temp:
   sonar_db:
   sonar_db_data:
+
+networks:
+  shared_postgres:
+    external: true
+  nginx:
+    external: true
