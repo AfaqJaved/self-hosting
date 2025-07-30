@@ -1,0 +1,50 @@
+SERVER_HOSTNAME: quay.local
+PREFERRED_URL_SCHEME: http
+EXTERNAL_TLS_TERMINATION: true
+
+FEATURE_USER_CREATION: true
+FEATURE_USER_INITIALIZE: true
+FEATURE_MAILING: false
+FEATURE_REPO_MIRROR: false
+FEATURE_STORAGE_REPLICATION: false
+FEATURE_BUILD_SUPPORT: false
+FEATURE_SECURITY_SCANNER: false
+
+DATABASE_SECRET_KEY: changeme-db-secret
+SECRET_KEY: changeme-secret-key
+SECURITY_SCANNER_INDEXING_INTERVAL: 30
+TAG_EXPIRATION_OPTIONS:
+  - 0s
+  - 1d
+  - 1w
+  - 1m
+  - 1y
+
+SUPER_USERS:
+  - afaqjaved  # Replace this with your Quay admin username
+
+DB_URI: postgresql://quayuser:quaypass@postgres:5432/quay
+
+REDIS:
+  host: redis
+  port: 6379
+
+DISTRIBUTED_STORAGE_CONFIG:
+  default:
+    - LocalStorage
+    - storage_path: /datastorage/registry
+
+ACCESS_LOG:
+  level: info
+  filename: -
+
+ERROR_LOG:
+  level: error
+  filename: -
+
+REGISTRY_STATE:
+  storage_path: /datastorage/registry-state
+
+USER_EVENTS_REDIS_CONFIG:
+  host: redis
+  port: 6379
