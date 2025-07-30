@@ -4,11 +4,20 @@ services:
     image: docker.io/gitea/gitea:1.24.3
     container_name: gitea-server
     environment:
+      # CORS settings
+      - GITEA__cors__ENABLED=true
+      - GITEA__cors__ALLOWED_ORIGINS=*
+      - GITEA__cors__ALLOW_CREDENTIALS=true
+      - GITEA__cors__ALLOWED_HEADERS=*
+      - GITEA__cors__ALLOWED_METHODS=GET,POST,PUT,DELETE,OPTIONS
+    # git tea docker registry
       - GITEA__packages__ENABLED=${GITEA__packages__ENABLED}
       - GITEA__registry__ENABLED=${GITEA__registry__ENABLED}
       - GITEA__registry__STORAGE_TYPE=${GITEA__registry__STORAGE_TYPE}
       - GITEA__registry__PATH=${GITEA__registry__PATH}
       - GITEA__registry__SERVE_DATA=${GITEA__registry__SERVE_DATA}
+
+
       - USER_UID=1000
       - USER_GID=1000
       # -- Change your database settings here...
