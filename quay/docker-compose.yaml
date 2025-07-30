@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       - DATABASE_URI=${DATABASE_URI}
-      - REDIS_HOST=${REDIS_HOST}redis
+      - REDIS_HOST=${REDIS_HOST}
       - QUAY_SUPER_USERS=${QUAY_SUPER_USERS}
       - SERVER_HOSTNAME=${SERVER_HOSTNAME}
     volumes:
