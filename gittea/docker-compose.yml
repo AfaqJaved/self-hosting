@@ -4,6 +4,11 @@ services:
     image: docker.io/gitea/gitea:1.24.3
     container_name: gitea-server
     environment:
+      - GITEA__packages__ENABLED=${GITEA__packages__ENABLED}
+      - GITEA__registry__ENABLED=${GITEA__registry__ENABLED}
+      - GITEA__registry__STORAGE_TYPE=${GITEA__registry__STORAGE_TYPE}
+      - GITEA__registry__PATH=${GITEA__registry__PATH}
+      - GITEA__registry__SERVE_DATA=${GITEA__registry__SERVE_DATA}
       - USER_UID=1000
       - USER_GID=1000
       # -- Change your database settings here...
@@ -40,6 +45,7 @@ services:
     ports:
       # --> (Optional) Remove when using traefik...
       #- "3000:3000"
+      #- "5000:5000" git tea docker registry
       # <--
       - "2221:22"  # <-- (Optional) Replace with your desired SSH port
       # --> (Optional) When using internal database...
