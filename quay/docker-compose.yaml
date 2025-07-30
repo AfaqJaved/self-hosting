@@ -11,8 +11,10 @@ services:
       - QUAY_SUPER_USERS=${QUAY_SUPER_USERS}
       - SERVER_HOSTNAME=${SERVER_HOSTNAME}
     volumes:
-      - quay_config:/conf/stack
-      - quay_storage:/datastorage
+      - app_storage:/datastorage
+      - app_config:/conf/stack
+      - app_log:/var/log
+      - app_tmp:/tmp
     networks:
       - nginx
       - shared_postgres
@@ -22,8 +24,14 @@ services:
 
 
 volumes:
-  quay_config:
-  quay_storage:
+  app_storage:
+    driver: local
+  app_config:
+    driver: local
+  app_log:
+    driver: local
+  app_tmp:
+    driver: local
 
 networks:
   nginx:
