@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  quay:
+    image: quay.io/projectquay/quay
+    container_name: quay
+    restart: always
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+      - REDIS_HOST=${REDIS_HOST}redis
+      - QUAY_SUPER_USERS=${QUAY_SUPER_USERS}
+      - SERVER_HOSTNAME=${SERVER_HOSTNAME}
+    volumes:
+      - quay_config:/conf/stack
+      - quay_storage:/datastorage
+    networks:
+      - nginx
+      - shared_postgres
+      - shared_redis
+    #ports: using npm
+    #  - 80:80
+
+
+volumes:
+  quay_config:
+  quay_storage:
+
+networks:
+  nginx:
+    external: true
+  shared_postgres:
+    external: true
+  shared_redis:
+    external : true
