@@ -12,21 +12,19 @@ services:
       - SERVER_HOSTNAME=${SERVER_HOSTNAME}
     volumes:
       - app_storage:/datastorage
-      - app_config:/conf/stack
+      - /opt/quay/quay_config:/conf/stack  # Mount local config directory with config.yaml
       - app_log:/var/log
       - app_tmp:/tmp
     networks:
       - nginx
       - shared_postgres
       - shared_redis
-    #ports: using npm
-    #  - 80:80
-
+    # Using NPM as reverse proxy, so ports are not exposed here
+    # ports:
+    #   - 80:80
 
 volumes:
   app_storage:
-    driver: local
-  app_config:
     driver: local
   app_log:
     driver: local
@@ -39,4 +37,4 @@ networks:
   shared_postgres:
     external: true
   shared_redis:
-    external : true
+    external: true

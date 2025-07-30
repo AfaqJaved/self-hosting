@@ -23,7 +23,7 @@ TAG_EXPIRATION_OPTIONS:
 SUPER_USERS:
   - afaqjaved  # Replace this with your Quay admin username
 
-DB_URI: postgresql://quayuser:quaypass@postgres:5432/quay
+DB_URI: postgresql://postgres:postgres@postgres:5432/quay
 
 REDIS:
   host: redis
