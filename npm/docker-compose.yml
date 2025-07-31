@@ -32,6 +32,8 @@ services:
       MYSQL_PASSWORD: "admin"
     volumes:
       - ./mariadb:/var/lib/mysql
+    networks:
+      - nginx
 
 # No need to define external networks unless you really need to share across projects
 
