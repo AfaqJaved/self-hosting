@@ -12,13 +12,15 @@ services:
       DB_MYSQL_HOST: "mariadb"
       DB_MYSQL_PORT: 3306
       DB_MYSQL_USER: "mariadb"
-      DB_MYSQL_PASSWORD: "Mynameiskhan10005@007"
+      DB_MYSQL_PASSWORD: "admin"
       DB_MYSQL_NAME: "nginx-reverse-proxy"
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
     depends_on:
       - mariadb
+    networks:
+      - nginx
 
   mariadb:
     image: mariadb:10.5
@@ -27,8 +29,12 @@ services:
       MYSQL_ROOT_PASSWORD: "rootpassword"
       MYSQL_DATABASE: "nginx-reverse-proxy"
       MYSQL_USER: "mariadb"
-      MYSQL_PASSWORD: "Mynameiskhan10005@007"
+      MYSQL_PASSWORD: "admin"
     volumes:
       - ./mariadb:/var/lib/mysql
 
 # No need to define external networks unless you really need to share across projects
+
+networks:
+  nginx:
+    external: true
