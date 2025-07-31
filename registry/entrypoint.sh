@@ -7,4 +7,6 @@ mkdir -p /auth
 htpasswd -Bbc /auth/htpasswd "$REGISTRY_USER" "$REGISTRY_PASS"
 
 # Execute the actual registry binary
-exec /usr/bin/registry serve /etc/docker/registry/config.yml
+
+# Run the registry server
+exec registry serve /etc/docker/registry/config.yml
