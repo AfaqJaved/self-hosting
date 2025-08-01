@@ -3,17 +3,18 @@ version: '3.8'
 services:
   minio:
     container_name: minio
-  #ports:
-  #  - "9000:9000" will be exposed using npm
-  #  - "9001:9001"
-  environment:
-    MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-    MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-  volumes:
-    - ${MINIO_DATA_PATH}:/data
-  command: server /data --console-address ":9001"
-  networks:
-    - nginx
+    image: minio/minio:latest
+    # ports:
+    #   - "9000:9000" # will be exposed using Nginx Proxy Manager (npm)
+    #   - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - ${MINIO_DATA_PATH}:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - nginx
 
 networks:
   nginx:
