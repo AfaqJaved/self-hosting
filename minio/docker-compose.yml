@@ -13,3 +13,9 @@ services:
     volumes:
       - ${MINIO_DATA_PATH}:/data
     command: server /data --console-address ":9001"
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    external : true
