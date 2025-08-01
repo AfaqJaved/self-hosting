@@ -14,6 +14,8 @@ services:
       DB_MYSQL_USER: "mariadb"
       DB_MYSQL_PASSWORD: "admin"
       DB_MYSQL_NAME: "nginx-reverse-proxy"
+      INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL}
+      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD}
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
