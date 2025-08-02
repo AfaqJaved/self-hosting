@@ -12,6 +12,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - nginx
+      - default
 
   postgres:
     image: postgres:17
@@ -28,3 +31,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - default
+
+networks:
+  nginx:
+    external: true
