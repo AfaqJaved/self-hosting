@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
     command: -config.file=/etc/loki/local-config.yaml
     volumes:
-      - .${LOKI_CONFIG_PATH}/loki-config.yaml:/etc/loki/local-config.yaml
+      - ${LOKI_CONFIG_PATH}/loki-config.yaml:/etc/loki/local-config.yaml
     networks:
       - grafana
 
@@ -33,7 +33,7 @@ services:
     container_name: prometheus
     restart: unless-stopped
     volumes:
-      - .${PROM_CONFIG_PATH}/prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - ${PROM_CONFIG_PATH}/prometheus.yaml:/etc/prometheus/prometheus.yaml
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     networks:
