@@ -15,8 +15,11 @@ services:
       - '${GRAFANA_STORAGE_PATH}/data:/var/lib/grafana'
     networks:
       - nginx
+      - grafana # for connecting loki and prometheus with it but not exposing using npm
 
 
 networks:
   nginx:
     external: true
+  grafana:
+    external : true
