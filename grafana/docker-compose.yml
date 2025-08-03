@@ -8,8 +8,8 @@ services:
     user: '0'
     environment:
       - GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL}
-    ports:
-      - '3000:3000'
+    #ports:
+    #  - '3000:3000'
     # adding the mount volume point which we create earlier
     volumes:
       - '${GRAFANA_STORAGE_PATH}/data:/var/lib/grafana'
