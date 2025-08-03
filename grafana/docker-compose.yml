@@ -1,6 +1,6 @@
 services:
   grafana:
-    image: grafana/grafana-enterprise
+    image: grafana/grafana-oss:12.1.0
     container_name: grafana
     restart: unless-stopped
     # if you are running as root then set it to 0
