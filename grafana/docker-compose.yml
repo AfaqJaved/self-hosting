@@ -18,6 +18,28 @@ services:
       - grafana # for connecting loki and prometheus with it but not exposing using npm
 
 
+  loki:
+    image: grafana/loki:3.5.3
+    container_name: loki
+    restart: unless-stopped
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - .${LOKI_CONFIG_PATH}/loki-config.yaml:/etc/loki/local-config.yaml
+    networks:
+      - grafana
+
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - .${PROM_CONFIG_PATH}/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+    networks:
+      - grafana
+
+
 networks:
   nginx:
     external: true
