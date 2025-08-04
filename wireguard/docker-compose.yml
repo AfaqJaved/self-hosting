@@ -4,8 +4,8 @@ volumes:
 services:
   wg-easy:
     environment:
-      - PORT=${PORT} #51821
-      - HOST=${HOST}
+      - PORT=${PORT} #51821 this is the port for https web ui
+      - HOST=${HOST} # 51821 this is the host for https web ui
       - INSECURE=${INSECURE} #false
 
     image: ghcr.io/wg-easy/wg-easy:15

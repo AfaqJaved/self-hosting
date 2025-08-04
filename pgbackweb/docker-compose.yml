@@ -22,8 +22,8 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    #ports:
-    #  - "5432:5432"
+    ports:
+      - "5432:5432" # i need this to access via vpn
     volumes:
       - ./home/afaqjaved/postgres/data:/var/lib/postgresql/data
     healthcheck:
