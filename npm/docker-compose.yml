@@ -5,8 +5,14 @@ services:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
-      - '80:80'     # Public HTTP Port
-      - '443:443'   # Public HTTPS Port
+      - target: 443
+        published: 443 # Outside port
+        mode: host
+        protocol: tcp
+      - target: 80
+        published: 80 # Outside port
+        mode: host
+        protocol: tcp
       - '81:81'     # Admin Web Port
     environment:
       DB_MYSQL_HOST: "mariadb"
