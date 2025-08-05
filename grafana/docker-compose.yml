@@ -27,6 +27,7 @@ services:
       - ${LOKI_CONFIG_PATH}/loki-config.yaml:/etc/loki/local-config.yaml
     networks:
       - grafana
+      - nginx # exposed behid reverse proxy with basic auth
 
   prometheus:
     image: prom/prometheus:v3.5.0
