@@ -18,7 +18,7 @@ services:
       - default
 
   postgres:
-    image: postgres:17
+    image: postgres:${PG_VERSION}
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -27,7 +27,7 @@ services:
     ports:
       - "5432:5432" # i need this to access via vpn
     volumes:
-      - /home/afaqjaved/postgres/data:/var/lib/postgresql/data
+      - ${PG_VOLUME_PATH}:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
