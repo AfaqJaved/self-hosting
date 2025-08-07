@@ -15,7 +15,7 @@ services:
       - PEERS=5 #optional
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
-      # - ALLOWEDIPS=0.0.0.0/0 #optional
+      - ALLOWEDIPS=10.13.13.0/24 #optional
       #- PERSISTENTKEEPALIVE_PEERS= #optional
       - LOG_CONFS=true #optional
     volumes:
