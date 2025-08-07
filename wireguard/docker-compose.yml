@@ -10,7 +10,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - SERVERURL=wireguard.domain.com #optional
+      - SERVERURL=${SERVERURL} #optional
       - SERVERPORT=51820 #optional
       - PEERS=5 #optional
       - PEERDNS=auto #optional
