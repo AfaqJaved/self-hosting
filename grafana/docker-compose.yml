@@ -15,7 +15,6 @@ services:
       - '${GRAFANA_STORAGE_PATH}/data:/var/lib/grafana'
     networks:
       - nginx
-      - grafana # for connecting loki and prometheus with it but not exposing using npm
 
 
   loki:
@@ -26,7 +25,6 @@ services:
     volumes:
       - ${LOKI_CONFIG_PATH}/loki-config.yaml:/etc/loki/local-config.yaml
     networks:
-      - grafana
       - nginx # exposed behid reverse proxy with basic auth
 
   prometheus:
@@ -38,12 +36,9 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     networks:
-      - grafana
       - nginx
 
 
 networks:
   nginx:
     external: true
-  grafana:
-    external : true
