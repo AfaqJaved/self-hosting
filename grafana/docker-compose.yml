@@ -39,6 +39,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     networks:
       - grafana
+      - nginx
 
 
 networks:
