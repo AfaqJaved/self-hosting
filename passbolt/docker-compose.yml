@@ -31,7 +31,7 @@ services:
         "/usr/bin/wait-for.sh",
         "-t",
         "0",
-        "db:5432",
+        "postgres:5432",
         "--",
         "/docker-entrypoint.sh",
       ]
