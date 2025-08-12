@@ -14,9 +14,7 @@ services:
     image: passbolt/passbolt:5.3.2-1-ce
     #Alternatively you can use rootless:
     #image: passbolt/passbolt:latest-ce-non-root
-    restart: unless-stopped
-    depends_on:
-      - db
+    restart: always
     environment:
       APP_FULL_BASE_URL: ${APP_FULL_BASE_URL}  #https://passbolt.local
       DATASOURCES_DEFAULT_DRIVER: Cake\Database\Driver\Postgres
