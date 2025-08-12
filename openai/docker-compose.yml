@@ -4,6 +4,8 @@ services:
   ollama:
     image: ollama/ollama
     container_name: ollama
+    environment:
+      - OLLAMA_NUM_THREADS=12
     volumes:
       - ${OLLAMA_PATH}:/root/.ollama
     #ports:
