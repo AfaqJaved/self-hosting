@@ -23,7 +23,7 @@ services:
       - WEBUI_PORT=3000
       - WEBUI_BIND_ADDRESS=0.0.0.0
     #ports:
-    #  - "3000:3000" using npm
+    #  - "3000:8080" using npm
     volumes:
       - ${OPEN_WEB_UI_PATH}:/app/backend/data
     restart: unless-stopped
