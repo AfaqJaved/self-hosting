@@ -10,7 +10,7 @@ services:
     #  - "11434:11434"
     restart: unless-stopped
     networks:
-      - default
+      - nginx
 
 
   openwebui:
@@ -27,7 +27,6 @@ services:
     restart: unless-stopped
     networks:
       - nginx
-      - default
 
 
 networks:
