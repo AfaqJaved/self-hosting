@@ -13,12 +13,10 @@ services:
       REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
     volumes:
-      - registry_data:/var/lib/registry
+      - ${REGISTRY_VOLUME_PATH}:/var/lib/registry
     networks:
       - nginx
 
-volumes:
-  registry_data:
 
 networks:
   nginx:
