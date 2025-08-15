@@ -14,8 +14,6 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     restart: unless-stopped
-    networks:
-    - shared_postgres
   nginx-authkey-test:
     image: nginx
     network_mode: service:tailscale-authkey1
@@ -23,7 +21,3 @@ services:
 volumes:
   ts-authkey-test:
     driver: local
-
-networks:
-  shared_postgres:
-    external: true
