@@ -16,9 +16,15 @@ services:
     cap_add:
       - net_admin
     restart: unless-stopped
+    networks:
+      - bridge
 
   nginx:
     image: nginx
     depends_on:
       - tailscale-nginx
     network_mode: service:tailscale-nginx
+
+networks:
+  bridge:
+    external: true
