@@ -19,11 +19,13 @@ services:
     networks:
       - nginx
 
-  nginx:
+  nginx-tailscale:
     image: nginx
     depends_on:
       - tailscale-nginx
     network_mode: service:tailscale-nginx
+    networks:
+      - nginx
 
 networks:
   nginx:
