@@ -16,6 +16,9 @@ services:
       - NET_ADMIN
     restart: unless-stopped
 
+volumes:
+  tailscale-state:
+
   # nginx:
   #   image: nginx
   #   depends_on:
