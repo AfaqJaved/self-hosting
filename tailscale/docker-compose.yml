@@ -23,7 +23,7 @@ services:
     image: nginx
     depends_on:
       - tailscale-nginx
-    network_mode: service:tailscale-nginx
+    #network_mode: service:tailscale-nginx
     networks:
       - nginx
 
