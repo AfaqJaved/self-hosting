@@ -16,7 +16,6 @@ services:
       - ${REGISTRY_VOLUME_PATH}:/var/lib/registry
     networks:
       - nginx
-      - default
 
   registry-ui:
     image: joxit/docker-registry-ui:latest
@@ -32,9 +31,7 @@ services:
       - registry
     networks:
       - nginx
-      - default
 
 networks:
   nginx:
     external: true
-  default:
