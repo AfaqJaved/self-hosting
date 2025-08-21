@@ -20,16 +20,14 @@ services:
   registry-ui:
     image: joxit/docker-registry-ui:latest
     container_name: registry-ui
-    #ports:
-    #  - "8080:80"
+    ports:
+      - "9090:80"
     environment:
       - REGISTRY_TITLE=Seamlessideas Docker Registry
       - NGINX_PROXY_PASS_URL=http://registry:5000
       - DELETE_IMAGES=true   # enable delete from UI
     depends_on:
       - registry
-    networks:
-      - nginx
 
 networks:
   nginx:
