@@ -3,8 +3,8 @@ version: '3.8'
 services:
   registry:
     build: .
-    ports:
-      - "5000:5000"
+    #ports:
+    #  - "5000:5000"
     environment:
       REGISTRY_USER: ${REGISTRY_USER}
       REGISTRY_PASS: ${REGISTRY_PASS}
@@ -12,6 +12,7 @@ services:
       REGISTRY_AUTH_HTPASSWD_REALM: "Registry Realm"
       REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
+      REGISTRY_STORAGE_DELETE_ENABLED: true
     volumes:
       - ${REGISTRY_VOLUME_PATH}:/var/lib/registry
     networks:
@@ -20,8 +21,8 @@ services:
   registry-ui:
     image: joxit/docker-registry-ui:latest
     container_name: registry-ui
-    ports:
-      - "9090:80"
+    #ports:
+    #  - "9090:80"
     environment:
       - REGISTRY_TITLE=Seamlessideas Docker Registry
       - NGINX_PROXY_PASS_URL=${NGINX_PROXY_PASS_URL}
