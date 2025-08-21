@@ -20,8 +20,6 @@ services:
   registry-ui:
     image: joxit/docker-registry-ui:latest
     container_name: registry-ui
-    depends_on:
-      - registry
     ports:
       - "9090:80"
     environment:
