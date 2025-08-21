@@ -3,8 +3,8 @@ version: '3.8'
 services:
   registry:
     build: .
-    #ports:
-    #  - "5000:5000"
+    ports:
+      - "5000:5000"
     environment:
       REGISTRY_USER: ${REGISTRY_USER}
       REGISTRY_PASS: ${REGISTRY_PASS}
