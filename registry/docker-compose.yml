@@ -26,6 +26,7 @@ services:
       - REGISTRY_TITLE=Seamlessideas Docker Registry
       - NGINX_PROXY_PASS_URL=${NGINX_PROXY_PASS_URL}
       - DELETE_IMAGES=true   # enable delete from UI
+      - SINGLE_REGISTRY=true
     depends_on:
       - registry
 
