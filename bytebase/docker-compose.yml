@@ -8,7 +8,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ~/.bytebase/data:/var/opt/bytebase
+      - ${BYTE_BASE_VOLUME_PATH}:/var/opt/bytebase
     restart: unless-stopped
     networks:
       - nginx
