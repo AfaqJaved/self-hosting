@@ -5,8 +5,8 @@ services:
     image: bytebase/bytebase:3.9.2
     container_name: bytebase
     init: true
-    ports:
-      - "8080:8080"
+    #ports:
+    #  - "8080:8080"
     volumes:
       - ${BYTE_BASE_VOLUME_PATH}:/var/opt/bytebase
     restart: unless-stopped
