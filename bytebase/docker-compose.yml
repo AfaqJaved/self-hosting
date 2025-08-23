@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  bytebase:
+    image: bytebase/bytebase:3.9.2
+    container_name: bytebase
+    init: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ~/.bytebase/data:/var/opt/bytebase
+    restart: unless-stopped
+    networks:
+      - nginx
+      - shared_postgres
+
+networks:
+  nginx:
+    external: true
+  shared_postgres:
+    external: true
