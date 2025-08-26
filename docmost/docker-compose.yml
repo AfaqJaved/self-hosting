@@ -31,7 +31,6 @@ services:
     networks:
       - shared_postgres
       - shared_redis
-      - shared_minio
       - nginx
 
   # postgres-docmost:
