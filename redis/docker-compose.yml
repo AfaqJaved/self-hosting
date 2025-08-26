@@ -10,7 +10,7 @@ services:
     volumes:
       - ${REDIS_VOLUME_PATH}:/data
     networks:
-      - shared_redis
+      - nginx
 
   redisinsight:
     image: redislabs/redisinsight:latest
@@ -21,11 +21,8 @@ services:
     depends_on:
       - redis
     networks:
-      - shared_redis
       - nginx
 
 networks:
   nginx:
-    external: true
-  shared_redis:
     external: true
