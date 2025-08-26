@@ -8,20 +8,10 @@ services:
     #  - "6379:6379"
     environment:
       REDIS_PASSWORD: secret
-    #networks:
-    #  - shared_redis
+    networks:
+     - shared_redis
 
-  redis-insight:
-    image: redis/redisinsight:latest
-    restart: always
-    #ports:
-    #  - "5540:5540"
-    #networks:
-    #  - shared_redis
-    #  - nginx
 
 networks:
-  nginx:
-    external: true
   shared_redis:
     external: true
