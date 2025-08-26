@@ -10,10 +10,10 @@ services:
     volumes:
       - ${REDIS_VOLUME_PATH}:/data
     networks:
-      - nginx
+      - shared_redis
 
   redisinsight:
-    image: redislabs/redisinsight:latest
+    image: redis/redisinsight:latest
     container_name: redisinsight
     restart: always
     #ports:
@@ -21,8 +21,11 @@ services:
     depends_on:
       - redis
     networks:
+      - shared_redis
       - nginx
 
 networks:
   nginx:
+    external: true
+  shared_redis:
     external: true
