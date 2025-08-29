@@ -22,7 +22,7 @@ services:
       - mongodb
     environment:
       - DB_CONNECTION_STRING=mongodb://mongodb:27017/uptime_db
-      - CLIENT_HOST= ${CLIENT_HOST} #http://localhost
+      # - CLIENT_HOST= ${CLIENT_HOST} #http://localhost
       - JWT_SECRET=${JWT_SECRET} #my_secret
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock:ro
