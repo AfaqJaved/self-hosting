@@ -14,11 +14,11 @@ services:
       - mongodb
 
   mongodb:
-    image: ghcr.io/bluewave-labs/checkmate-mongo:${VERSION}
+    image: ghcr.io/bluewave-labs/checkmate-mongo:${VERISON}
     restart: always
+    command: ["mongod", "--quiet", "--bind_ip_all"]
     volumes:
       - ${MONGO_PATH}:/data/db
-    command: ["mongod", "--quiet", "--bind_ip_all"]
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--quiet"]
       interval: 5s
