@@ -1,5 +1,5 @@
 services:
-  client:
+  checkmate-client:
     image: ghcr.io/bluewave-labs/checkmate-client:${VERSION}
     restart: always
     environment:
@@ -9,17 +9,17 @@ services:
     #  - "80:80"
     #  - "443:443"
     depends_on:
-      - server
+      - checkmate-server
     networks:
       - nginx
 
-  server:
+  checkmate-server:
     image: ghcr.io/bluewave-labs/checkmate-backend:${VERSION}
     restart: always
     #ports:
     #  - "52345:52345"
     depends_on:
-      - mongodb
+      - checkmate-mongodb
     environment:
       - DB_CONNECTION_STRING=mongodb://mongodb:27017/uptime_db
       - CLIENT_HOST= ${CLIENT_HOST} #http://localhost
@@ -29,7 +29,7 @@ services:
     networks:
       - nginx
 
-  mongodb:
+  checkmate-mongodb:
     image: ghcr.io/bluewave-labs/checkmate-mongo:${VERSION}
     restart: always
     volumes:
