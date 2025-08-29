@@ -12,6 +12,8 @@ services:
       - JWT_SECRET=${JWT_SECRET} #my_secret
     depends_on:
       - mongodb
+    networks:
+      - nginx
 
   mongodb:
     image: ghcr.io/bluewave-labs/checkmate-mongo:${VERSION}
