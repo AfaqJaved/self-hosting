@@ -14,7 +14,7 @@ services:
       - mongodb
 
   mongodb:
-    image: ghcr.io/bluewave-labs/checkmate-mongo:${VERISON}
+    image: ghcr.io/bluewave-labs/checkmate-mongo:${VERSION}
     restart: always
     command: ["mongod", "--quiet", "--bind_ip_all"]
     volumes:
