@@ -11,3 +11,10 @@ services:
       - GIN_MODE=release
     volumes:
       - /etc/os-release:/etc/os-release:ro
+    networks:
+      - nginx
+
+
+networks:
+  nginx:
+    external: true
