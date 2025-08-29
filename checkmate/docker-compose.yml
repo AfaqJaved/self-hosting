@@ -1,5 +1,4 @@
 services:
-  services:
   server:
     image: ghcr.io/bluewave-labs/checkmate-backend-mono:${VERSION}
     restart: always
