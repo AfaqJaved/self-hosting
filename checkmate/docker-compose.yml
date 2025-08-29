@@ -1,6 +1,6 @@
 services:
   client:
-    image: ghcr.io/bluewave-labs/checkmate-client:latest
+    image: ghcr.io/bluewave-labs/checkmate-client:${VERSION}
     restart: always
     environment:
       UPTIME_APP_API_BASE_URL: ${UPTIME_APP_API_BASE_URL} # "http://localhost:52345/api/v1"
@@ -14,7 +14,7 @@ services:
       - nginx
 
   server:
-    image: ghcr.io/bluewave-labs/checkmate-backend:latest
+    image: ghcr.io/bluewave-labs/checkmate-backend:${VERSION}
     restart: always
     #ports:
     #  - "52345:52345"
@@ -30,7 +30,7 @@ services:
       - nginx
 
   mongodb:
-    image: ghcr.io/bluewave-labs/checkmate-mongo:latest
+    image: ghcr.io/bluewave-labs/checkmate-mongo:${VERSION}
     restart: always
     volumes:
       - ${MONGO_PATH}:/data/db
