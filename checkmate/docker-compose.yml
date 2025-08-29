@@ -12,6 +12,8 @@ services:
       - JWT_SECRET=${JWT_SECRET} #my_secret
     depends_on:
       - mongodb
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - nginx
 
