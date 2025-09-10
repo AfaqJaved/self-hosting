@@ -19,6 +19,8 @@ services:
     volumes:
       - /home/afaqjaved/npm/data:/data
       - /home/afaqjaved/npm/letsencrypt:/etc/letsencrypt
+      # - /home/afaqjaved/npm/configs/server_proxy.conf:/data/nginx/custom/server_proxy.conf
+
     depends_on:
       - mariadb
     networks:

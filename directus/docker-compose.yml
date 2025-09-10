@@ -52,10 +52,14 @@ services:
       - shared_minio
       - shared_postgres
       - shared_redis
+      - nginx
+
 networks:
   shared_minio:
     external: true
   shared_postgres:
     external: true
   shared_redis:
+    external: true
+  nginx:
     external: true
