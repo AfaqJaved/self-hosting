@@ -73,10 +73,6 @@ services:
       - db_net
       - search_net
       - nginx
-    ports:
-      # - "8082:8082"
-      # - "8443:8443"
-      # - "4000:4000" # Glowroot web ui if enabled
 
 networks:
   db_net:
