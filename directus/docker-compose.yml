@@ -2,7 +2,7 @@ version: "3"
 
 services:
   directus:
-    image: directus/directus:11.10.0
+    image: directus/directus:11.12.0
     restart: always
     environment:
       NODE_ENV: ${NODE_ENV}
