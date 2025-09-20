@@ -50,7 +50,7 @@ services:
     image: dotcms/dotcms:25.07.10_lts_v2_5a7b052
     environment:
       CMS_JAVA_OPTS: '-Xmx1g '
-      JAVA_TOOL_OPTIONS: '-XX:UseSVE=0'
+      #JAVA_TOOL_OPTIONS: '-XX:UseSVE=0'
       LANG: 'C.UTF-8'
       TZ: 'UTC'
       DB_BASE_URL: "jdbc:postgresql://db/dotcms"
