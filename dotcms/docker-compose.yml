@@ -15,7 +15,6 @@ services:
       retries: 5
     restart: unless-stopped
     networks:
-      - db_net
       - nginx
 
   opensearch:
@@ -38,7 +37,6 @@ services:
     volumes:
       - opensearch-data:/usr/share/opensearch/data
     networks:
-      - search_net
       - nginx
     deploy:
       resources:
@@ -70,8 +68,6 @@ services:
       - cms-shared:/data/shared
       # - {license_local_path}/license.zip:/data/shared/assets/license.zip
     networks:
-      - db_net
-      - search_net
       - nginx
 
 networks:
