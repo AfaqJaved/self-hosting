@@ -1,0 +1,34 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:${VERSION_TAG}
+    restart: always
+    #ports:
+    #  - "127.0.0.1:5678:5678"
+    environment:
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PORT=${N8N_PORT}
+      - N8N_PROTOCOL=${N8N_PROTOCOL}
+      - NODE_ENV=${NODE_ENV}
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+      - N8N_USER_MANAGEMENT_DISABLED=${N8N_USER_MANAGEMENT_DISABLED}
+      - N8N_AUTH_EXCLUDE_ENDPOINTS=${N8N_AUTH_EXCLUDE_ENDPOINTS}
+      - DB_TYPE=${DB_TYPE}
+      - DB_POSTGRESDB_HOST=${DB_POSTGRESDB_HOST}
+      - DB_POSTGRESDB_PORT=${DB_POSTGRESDB_PORT}
+      - DB_POSTGRESDB_DATABASE=${DB_POSTGRESDB_DATABASE}
+      - DB_POSTGRESDB_USER=${DB_POSTGRESDB_USER}
+      - DB_POSTGRESDB_PASSWORD=${DB_POSTGRESDB_PASSWORD}
+    volumes:
+      - ${VOLUME_PATH}:/home/node/.n8n
+      - ${VOLUME_PATH_FILES}:/files
+    networks:
+      - nginx
+      - shared_postgres
+
+
+networks:
+  nginx:
+    external: true
+  shared_postgres:
+    external: true

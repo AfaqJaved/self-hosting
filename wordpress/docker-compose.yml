@@ -1,0 +1,72 @@
+
+x-restart: &restart_policy
+  restart: unless-stopped
+
+services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: wp_mariadb
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wp_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    <<: *restart_policy
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+
+  wordpress:
+    image: wordpress:6.4-apache
+    container_name: wp_app
+    env_file: .env
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_USER: "${MYSQL_USER}"
+      WORDPRESS_DB_PASSWORD: "${MYSQL_PASSWORD}"
+      WORDPRESS_DB_NAME: "${MYSQL_DATABASE}"
+      WORDPRESS_TABLE_PREFIX: "${WP_TABLE_PREFIX:-wp_}"
+      # SECURITY: ensure debug is off in production
+      WORDPRESS_DEBUG: "false"
+    volumes:
+      - wp_data:/var/www/html
+    ports:
+      - "8080:80" # Put a reverse proxy in front of this (see notes)
+    networks:
+      - wp_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/ || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+    <<: *restart_policy
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 1536M
+
+
+volumes:
+  db_data:
+  wp_data:
+  backups:
+
+networks:
+  wp_net:
+    driver: bridge
