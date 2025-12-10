@@ -22,7 +22,7 @@ services:
       mail__options__auth__user: ${mail__options__auth__user} # postmaster@example.mailgun.org
       mail__options__auth__pass: ${mail__options__auth__pass} # 1234567890
     volumes:
-      - ${bind_mount_ghost}:/var/lib/ghost/content
+      - ${bind__mount__ghost}:/var/lib/ghost/content
     networks:
       - nginx
 
@@ -35,7 +35,7 @@ services:
       MYSQL_PASSWORD: ghostdbpass
       MYSQL_DATABASE: ghostdb
     volumes:
-      - ${bind_mount_db}:/var/lib/mysql
+      - ${bind__mount__db}:/var/lib/mysql
     networks:
       - nginx
 
