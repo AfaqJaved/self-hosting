@@ -4,9 +4,9 @@ services:
     image: ghcr.io/get-convex/convex-backend:latest
     stop_grace_period: 10s
     stop_signal: SIGINT
-#    ports:
-#      - "${PORT:-3210}:3210"
-#      - "${SITE_PROXY_PORT:-3211}:3211"
+    #    ports:
+    #      - "${PORT:-3210}:3210"
+    #      - "${SITE_PROXY_PORT:-3211}:3211"
     volumes:
       - data:/convex/data
     environment:
@@ -41,6 +41,7 @@ services:
       - S3_STORAGE_SNAPSHOT_IMPORTS_BUCKET=${S3_STORAGE_SNAPSHOT_IMPORTS_BUCKET}
     networks:
       - nginx
+      - shared_postgres
     healthcheck:
       test: curl -f http://localhost:3210/version
       interval: 5s
@@ -51,8 +52,8 @@ services:
     image: ghcr.io/get-convex/convex-dashboard:latest
     stop_grace_period: 10s
     stop_signal: SIGINT
-#    ports:
-#      - "${DASHBOARD_PORT:-6791}:6791"
+    #    ports:
+    #      - "${DASHBOARD_PORT:-6791}:6791"
     environment:
       - NEXT_PUBLIC_DEPLOYMENT_URL=${NEXT_PUBLIC_DEPLOYMENT_URL:-http://127.0.0.1:${PORT:-3210}}
       - NEXT_PUBLIC_LOAD_MONACO_INTERNALLY
@@ -67,5 +68,7 @@ volumes:
 
 networks:
   nginx:
+    external: true
+  shared_postgres:
     external: true
 
