@@ -1,0 +1,17 @@
+services:
+  nexterm:
+    environment:
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+    # ports:
+      # - "6989:6989"
+    restart: always
+    volumes:
+      - ${VOLUME_PATH}:/app/data
+    image: germannewsmaker/nexterm:latest
+    networks:
+      - nginx
+
+
+networks:
+  nginx:
+    external: true
