@@ -1,6 +1,6 @@
 services:
   pgbackweb:
-    image: eduardolat/pgbackweb:latest
+    image: eduardolat/pgbackweb:${PG_BACK_VERSION}
     #ports:
     #  - "8085:8085" # Access the web interface at http://localhost:8085 commented since using npm
     #volumes:
