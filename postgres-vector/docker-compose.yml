@@ -1,5 +1,5 @@
 services:
-  postgresVector:
+  postgres-vector:
     build: .
     container_name: pgvector-db
     networks:
