@@ -8,7 +8,6 @@ services:
     volumes:
       - ${DB_VOLUME_PATH}:/mydata
     networks:
-      - open_notebook_internal
       - nginx
     restart: always
 
@@ -31,12 +30,9 @@ services:
     depends_on:
       - surrealdb
     networks:
-      - open_notebook_internal
       - nginx
     restart: always
 
 networks:
-  open_notebook_internal:
-    driver: bridge
   nginx:
     external: true
