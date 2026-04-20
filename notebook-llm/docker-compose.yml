@@ -9,7 +9,7 @@ services:
       - ${DB_VOLUME_PATH}:/mydata
     networks:
       - open_notebook_internal
-      - nginx_proxy
+      - nginx
     restart: always
 
   open_notebook:
@@ -32,11 +32,11 @@ services:
       - surrealdb
     networks:
       - open_notebook_internal
-      - nginx_proxy
+      - nginx
     restart: always
 
 networks:
   open_notebook_internal:
     driver: bridge
-  nginx_proxy:
+  nginx:
     external: true
