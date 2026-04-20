@@ -3,8 +3,8 @@ services:
     image: surrealdb/surrealdb:v2
     command: start --log ${SURREAL_LOG_LEVEL} --user ${SURREAL_USER} --pass ${SURREAL_PASSWORD} ${SURREAL_DB_PATH}
     user: root
-    ports:
-      - "${SURREAL_PORT}:8000"
+    # ports:
+    # - "${SURREAL_PORT}:8000"
     volumes:
       - ${DB_VOLUME_PATH}:/mydata
     networks:
@@ -14,9 +14,9 @@ services:
 
   open_notebook:
     image: lfnovo/open_notebook:v1-latest
-    ports:
-      - "${NOTEBOOK_UI_PORT}:8502"
-      - "${NOTEBOOK_API_PORT}:5055"
+    # ports:
+    # - "${NOTEBOOK_UI_PORT}:8502"
+    # - "${NOTEBOOK_API_PORT}:5055"
     env_file:
       - variables.env
     environment:
