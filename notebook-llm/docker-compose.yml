@@ -25,6 +25,7 @@ services:
       - SURREAL_PASSWORD=${SURREAL_PASSWORD}
       - SURREAL_NAMESPACE=${SURREAL_NAMESPACE}
       - SURREAL_DATABASE=${SURREAL_DATABASE}
+      - API_URL=${API_URL}
     volumes:
       - ${NOTEBOOK_VOLUME_PATH}:/app/data
     depends_on:
