@@ -1,0 +1,12 @@
+services:
+  mtproto-proxy:
+    image: telegrammessenger/proxy:latest
+    container_name: mtproto-proxy
+    restart: always
+    ports:
+      - "6060:443"
+    volumes:
+      - proxy-config:/data
+
+volumes:
+  proxy-config:
