@@ -13,7 +13,7 @@ services:
     environment:
       RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY}
       RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY}
-    command: --access-key admin --secret-key admin /data
+    command: --access-key ${RUSTFS_ACCESS_KEY} --secret-key ${RUSTFS_SECRET_KEY} /data
 
 volumes:
   rustfs_data:
