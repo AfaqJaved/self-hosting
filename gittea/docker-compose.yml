@@ -1,5 +1,14 @@
 ---
 services:
+  newt:
+    image: fosrl/newt
+    container_name: newt
+    restart: unless-stopped
+    environment:
+      - PANGOLIN_ENDPOINT=https://app.pangolin.net
+      - NEWT_ID=${NEWT_ID}
+      - NEWT_SECRET=${NEWT_SECRET}
+
   gittea:
     image: docker.io/gitea/gitea:1.24.3
     container_name: gitea-server
@@ -10,13 +19,12 @@ services:
       - GITEA__cors__ALLOW_CREDENTIALS=true
       - GITEA__cors__ALLOWED_HEADERS=*
       - GITEA__cors__ALLOWED_METHODS=GET,POST,PUT,DELETE,OPTIONS
-    # git tea docker registry
+      # git tea docker registry
       - GITEA__packages__ENABLED=${GITEA__packages__ENABLED}
       - GITEA__registry__ENABLED=${GITEA__registry__ENABLED}
       - GITEA__registry__STORAGE_TYPE=${GITEA__registry__STORAGE_TYPE}
       - GITEA__registry__PATH=${GITEA__registry__PATH}
       - GITEA__registry__SERVE_DATA=${GITEA__registry__SERVE_DATA}
-
 
       - USER_UID=1000
       - USER_GID=1000
@@ -56,7 +64,7 @@ services:
       #- "3000:3000"
       #- "5000:5000" git tea docker registry
       # <--
-      - "2221:22"  # <-- (Optional) Replace with your desired SSH port
+      - "2221:22" # <-- (Optional) Replace with your desired SSH port
       # --> (Optional) When using internal database...
     # depends_on:
     #   - db
