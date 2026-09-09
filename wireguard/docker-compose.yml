@@ -1,10 +1,11 @@
 services:
   wg-easy:
-    image: ghcr.io/wg-easy/wg-easy
+    image: ghcr.io/wg-easy/wg-easy:latest
     container_name: wg-easy
     environment:
       - WG_HOST=${WG_HOST}
       - PASSWORD=${PASSWORD}
+      - INSECURE=true
     volumes:
       - ~/.wg-easy:/etc/wireguard
     # ports:
