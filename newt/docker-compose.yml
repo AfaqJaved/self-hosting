@@ -9,3 +9,7 @@ services:
       - PANGOLIN_ENDPOINT=https://app.pangolin.net
       - NEWT_ID=${NEWT_ID}
       - NEWT_SECRET=${NEWT_SECRET}
+
+networks:
+  nginx:
+    external: true
