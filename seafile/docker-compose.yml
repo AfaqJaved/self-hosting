@@ -1,0 +1,54 @@
+services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ${MARIADB_DATA_PATH}:/var/lib/mysql
+    networks:
+      - nginx
+
+  memcached:
+    image: memcached:1.6.18
+    container_name: seafile-memcached
+    restart: always
+    entrypoint: memcached -m 256
+    networks:
+      - nginx
+
+  seafile:
+    image: seafileltd/seafile-mc:11.0-latest
+    container_name: seafile
+    restart: always
+    volumes:
+      - ${SEAFILE_DATA_PATH}:/shared
+    environment:
+      DB_HOST: mariadb
+      DB_USER: ${MYSQL_USER}
+      DB_ROOT_PASSWD: ${MYSQL_ROOT_PASSWORD}
+
+      TIME_ZONE: ${TIME_ZONE}
+
+      SEAFILE_ADMIN_EMAIL: ${SEAFILE_ADMIN_EMAIL}
+      SEAFILE_ADMIN_PASSWORD: ${SEAFILE_ADMIN_PASSWORD}
+
+      SEAFILE_SERVER_LETSENCRYPT: ${SEAFILE_SERVER_LETSENCRYPT}
+      SEAFILE_SERVER_HOSTNAME: ${SEAFILE_SERVER_HOSTNAME}
+
+      SEAFILE_MYSQL_DB_USER: ${SEAFILE_MYSQL_DB_USER}
+      SEAFILE_MYSQL_DB_PASSWORD: ${SEAFILE_MYSQL_DB_PASSWORD}
+
+    depends_on:
+      - mariadb
+      - memcached
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    external: true
