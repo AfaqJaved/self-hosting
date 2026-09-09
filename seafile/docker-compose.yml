@@ -28,7 +28,7 @@ services:
     volumes:
       - ${SEAFILE_DATA_PATH}:/shared
     environment:
-      DB_HOST: mariadb
+      DB_HOST: mariadb-seafile
       DB_USER: ${MYSQL_USER}
       DB_ROOT_PASSWD: ${MYSQL_ROOT_PASSWORD}
 
