@@ -1,7 +1,7 @@
 services:
-  mariadb-seafile:
+  mariadb:
     image: mariadb:10.11
-    container_name: mariadb-seafile
+    container_name: mariadb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -28,7 +28,7 @@ services:
     volumes:
       - ${SEAFILE_DATA_PATH}:/shared
     environment:
-      DB_HOST: mariadb-seafile
+      DB_HOST: mariadb
       DB_USER: ${MYSQL_USER}
       DB_ROOT_PASSWD: ${MYSQL_ROOT_PASSWORD}
 
@@ -44,7 +44,7 @@ services:
       SEAFILE_MYSQL_DB_PASSWORD: ${SEAFILE_MYSQL_DB_PASSWORD}
 
     depends_on:
-      - mariadb-seafile
+      - mariadb
       - memcached-seafile
     networks:
       - nginx
