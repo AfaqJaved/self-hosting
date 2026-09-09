@@ -1,5 +1,5 @@
 services:
-  mariadb:
+  mariadb-seafile:
     image: mariadb:10.11
     container_name: mariadb
     restart: always
@@ -13,7 +13,7 @@ services:
     networks:
       - nginx
 
-  memcached:
+  memcached-seafile:
     image: memcached:1.6.18
     container_name: seafile-memcached
     restart: always
@@ -44,8 +44,8 @@ services:
       SEAFILE_MYSQL_DB_PASSWORD: ${SEAFILE_MYSQL_DB_PASSWORD}
 
     depends_on:
-      - mariadb
-      - memcached
+      - mariadb-seafile
+      - memcached-seafile
     networks:
       - nginx
 
