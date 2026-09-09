@@ -18,4 +18,16 @@ services:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
+    networks:
+      - vpn
 
+  coredns:
+    image: coredns/coredns
+    container_name: coredns
+    networks:
+      - vpn
+    restart: unless-stopped
+
+networks:
+  vpn:
+    external: true
