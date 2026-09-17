@@ -1,0 +1,22 @@
+services:
+  portabase:
+    image: portabase/portabase:latest
+    restart: unless-stopped
+    ports:
+      - "8887:80"
+    environment:
+      PROJECT_URL: ${PROJECT_URL}
+      PROJECT_SECRET: ${PROJECT_SECRET}
+      TZ: ${TZ}
+    volumes:
+      - ${VOLUME_NAME}:/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - nginx
+
+volumes:
+  ${VOLUME_NAME}:
