@@ -1,6 +1,6 @@
 services:
   portabase:
-    image: portabase/portabase:latest
+    image: portabase/portabase:${VERSION}
     restart: unless-stopped
     # ports:
     # - "8887:80"
