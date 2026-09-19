@@ -7,9 +7,15 @@ services:
     volumes:
       - ./home/afaqjaved/docker-volumes/databasus/databasus-data:/databasus-data
     restart: unless-stopped
+    networks:
+      - nginx
     healthcheck:
       test: ["CMD", "databasus", "healthcheck"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 60s
+
+networks:
+  nginx:
+    external: true
