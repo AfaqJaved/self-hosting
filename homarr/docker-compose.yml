@@ -4,7 +4,7 @@
 services:
   homarr:
     container_name: homarr
-    image: ghcr.io/homarr-labs/homarr:v1.50.0
+    image: ghcr.io/homarr-labs/homarr:v1.77.2
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # Optional, only if you want docker integration
@@ -14,8 +14,7 @@ services:
     #ports:
     #  - '7575:7575' // using npm
     networks:
-     - nginx
-
+      - nginx
 
 networks:
   nginx:
