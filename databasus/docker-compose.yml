@@ -2,8 +2,8 @@ services:
   databasus:
     container_name: databasus
     image: databasus/databasus:${VERSION}
-    ports:
-      - "4005:4005"
+    # ports:
+    # - "4005:4005"
     volumes:
       - ./home/afaqjaved/docker-volumes/databasus/databasus-data:/databasus-data
     restart: unless-stopped
