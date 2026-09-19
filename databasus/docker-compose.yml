@@ -9,6 +9,7 @@ services:
     restart: unless-stopped
     networks:
       - nginx
+      - shared_postgres
     healthcheck:
       test: ["CMD", "databasus", "healthcheck"]
       interval: 30s
@@ -18,4 +19,6 @@ services:
 
 networks:
   nginx:
+    external: true
+  shared_postgres:
     external: true
