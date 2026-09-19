@@ -1,0 +1,15 @@
+services:
+  databasus:
+    container_name: databasus
+    image: databasus/databasus:${VERSION}
+    ports:
+      - "4005:4005"
+    volumes:
+      - ./home/afaqjaved/docker-volumes/databasus/databasus-data:/databasus-data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "databasus", "healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
