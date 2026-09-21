@@ -7,6 +7,14 @@ services:
     volumes:
       - /home/afaqjaved/docker-volumes/databasus/databasus-data:/databasus-data
     restart: unless-stopped
+    environment:
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_FROM: ${SMTP_FROM}
+      SMTP_INSECURE_SKIP_VERIFY: ${SMTP_INSECURE_SKIP_VERIFY}
+      DATABASUS_URL: ${DATABASUS_URL}
     networks:
       - nginx
       - shared_postgres
