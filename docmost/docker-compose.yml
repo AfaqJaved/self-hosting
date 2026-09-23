@@ -30,40 +30,22 @@ services:
     #  - docmost:/app/data/storage
     networks:
       - shared_postgres
-      - shared_redis
       - nginx
 
-  # postgres-docmost:
-  #   image: postgres:15
-  #   restart: always
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: postgres
-  #     POSTGRES_DB: postgres
-  #   volumes:
-  #     - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - docmost_redis:/data
+    networks:
+      - shared_postgres
+      - nginx
 
-  # minio-docmost:
-  #   image: minio/minio
-  #   command: server /data --console-address ":9001"
-  #   environment:
-  #     MINIO_ACCESS_KEY: AKIA7FJB8R93XTRN56PL
-  #     MINIO_SECRET_KEY: d87J!Yh63B*kP&u9r5%Z+3LpXnR@vGmw
-  #   ports:
-  #     - "9000:9000"  # API
-  #     - "9001:9001"  # Web UI
-  #   volumes:
-  #     - miniodata:/data
-
-#volumes:
-#  docmost:
+volumes:
+  docmost_redis:
 
 networks:
-  shared_minio:
-    external: true
   shared_postgres:
-    external: true
-  shared_redis:
     external: true
   nginx:
     external: true
