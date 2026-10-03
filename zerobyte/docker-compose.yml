@@ -9,6 +9,8 @@ services:
     # - "4096:4096"
     devices:
       - /dev/fuse:/dev/fuse
+    networks:
+      - nginx
     environment:
       - TZ=Asia/Karachi # Set your timezone here
       - BASE_URL=${BASE_URL}
@@ -17,3 +19,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/lib/zerobyte:/var/lib/zerobyte
       - /home/afaqjaved/docker-volumes/:/docker-volumes
+
+networks:
+  nginx:
+    external: true
