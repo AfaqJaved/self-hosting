@@ -9,8 +9,14 @@ services:
       TWO_FACTOR_ENCRYPTION_KEY: ${TWO_FACTOR_ENCRYPTION_KEY}
     init: true
     restart: always
+    networks:
+      - nginx
     healthcheck:
       test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]
       interval: 5s
       timeout: 5s
       retries: 5
+
+networks:
+  nginx:
+    external: true
