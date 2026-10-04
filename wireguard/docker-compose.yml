@@ -11,6 +11,7 @@ services:
       - INIT_PASSWORD=${WG_PASSWORD}
       - INIT_HOST=${WG_HOST}
       - INIT_PORT=51820
+      - DISABLE_IPV6=true
     volumes:
       - ~/.wg-easy:/etc/wireguard
     ports:
