@@ -7,6 +7,7 @@ services:
       # Unattended setup: creates the admin account on first boot.
       # 2FA (TOTP) can't be set via env vars - enable it after login from the Account page in the UI.
       - INIT_ENABLED=true
+      - INSECURE=false
       - INIT_USERNAME=${WG_USERNAME}
       - INIT_PASSWORD=${WG_PASSWORD}
       - INIT_HOST=${WG_HOST}
