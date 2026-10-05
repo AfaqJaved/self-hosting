@@ -21,6 +21,14 @@ services:
       mail__options__secure: ${mail__options__secure} # "true"
       mail__options__auth__user: ${mail__options__auth__user} # postmaster@example.mailgun.org
       mail__options__auth__pass: ${mail__options__auth__pass} # 1234567890
+
+      # Storage Adapter Environment Variables
+      storage__active: ${storage__active}
+      storage__ghost-s3__bucket: ${storage__ghost-s3__bucket}
+      storage__ghost-s3__region: us-east-1
+      storage__ghost-s3__assetHost: ${storage__ghost-s3__assetHost}
+      storage__ghost-s3__key: ${storage__ghost-s3__key}
+      storage__ghost-s3__secret: ${storage__ghost-s3__secret}
     volumes:
       - ${bind__mount__ghost}:/var/lib/ghost/content
     networks:
