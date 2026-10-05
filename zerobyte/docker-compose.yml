@@ -17,7 +17,7 @@ services:
       - APP_SECRET=${APP_SECRET}
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /var/lib/zerobyte:/var/lib/zerobyte
+      - /home/afaqjaved/docker-volumes/zerobyte:/var/lib/zerobyte
       - /home/afaqjaved/docker-volumes/:/docker-volumes
 
 networks:
