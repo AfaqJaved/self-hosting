@@ -5,21 +5,21 @@ services:
     restart: unless-stopped
     cap_add:
       - SYS_ADMIN
-    # ports:
-    # - "4096:4096"
+    ports:
+      - "4096:4096"
     devices:
       - /dev/fuse:/dev/fuse
-    networks:
-      - nginx
+    # networks:
+    # - nginx
     environment:
       - TZ=Asia/Karachi # Set your timezone here
       - BASE_URL=${BASE_URL}
       - APP_SECRET=${APP_SECRET}
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /home/afaqjaved/docker-volumes/zerobyte:/var/lib/zerobyte
-      - /home/afaqjaved/docker-volumes/:/docker-volumes
+    # volumes:
+    #   - /etc/localtime:/etc/localtime:ro
+    #   - /home/afaqjaved/docker-volumes/zerobyte:/var/lib/zerobyte
+    #   - /home/afaqjaved/docker-volumes/:/docker-volumes
 
-networks:
-  nginx:
-    external: true
+# networks:
+#   nginx:
+#     external: true

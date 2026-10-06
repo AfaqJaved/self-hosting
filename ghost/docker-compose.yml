@@ -21,6 +21,7 @@ services:
       mail__options__secure: ${mail__options__secure} # "true"
       mail__options__auth__user: ${mail__options__auth__user} # postmaster@example.mailgun.org
       mail__options__auth__pass: ${mail__options__auth__pass} # 1234567890
+      mail__from: ${mail__from} # 1234567890
 
     volumes:
       - ${bind__mount__ghost}:/var/lib/ghost/content
