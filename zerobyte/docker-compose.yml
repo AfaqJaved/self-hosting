@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     cap_add:
       - SYS_ADMIN
-    ports:
-      - "4096:4096"
+    # ports:
+    #   - "4096:4096"
     devices:
       - /dev/fuse:/dev/fuse
     # networks:
